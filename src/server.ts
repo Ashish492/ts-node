@@ -3,7 +3,13 @@ import http from "http"
 // import os from "node:os"
 import app from "./app"
 import { config } from "dotenv"
-
+const start = () => {
+  const PORT = process.env.PORT || 5000
+  const server = http.createServer(app)
+  server.listen(PORT, () =>
+    console.log(`server listen on ${PORT} and pid:${process.pid}`)
+  )
+}
 config()
 
 // uncomment to use cluster
@@ -17,15 +23,8 @@ config()
 //     cluster.fork()
 //   })
 // } else {
-//   // getting PORT
-//   const PORT = process.env.PORT || 5000
-//   const server = http.createServer(app)
-//   server.listen(PORT, () =>
-//     console.log(`server listen on ${PORT} and pid:${process.pid}`)
+
+start()
+
 //   )
 // }
-   const PORT = process.env.PORT || 5000
-  const server = http.createServer(app)
-  server.listen(PORT, () =>
-    console.log(`server listen on ${PORT} and pid:${process.pid}`)
-  )
